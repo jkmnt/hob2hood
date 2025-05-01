@@ -77,7 +77,7 @@ The 19V voltage drop across the linear regulator, really ?
 At the standby current of ~10mA, the regulator will dissipate 0.2W. A little too much
 for the SOP-8 package to my taste. With three LEDs on, the current is about the 33mA, which translates to 0.63W. The regulator is cooking hot ! With six LEDs (0.95W) the regulator is on fire.
 
-Why it is working ? The standby power dissipation is big, while tolerable. In active mode, the stock firmware never lights more than three LEDs simultaneously. One of these LEDs indicates the working fan. And a working fan means great cooling !
+Why is it working ? The standby power dissipation is big, while tolerable. In active mode, the stock firmware never lights more than three LEDs simultaneously. One of these LEDs indicates the working fan. And a working fan means great cooling !
 
 I guess the board was designed for 12V relays and 12V supply rail. With the 7V drop, the regulator is always happy. The 24V rail is later "successful" modification. Looks like the manufacturer has a (huge) stock of
 otherwise unused 24V relays.
