@@ -114,7 +114,7 @@ I used the PD4 as the IR input, and the PD5 as the debug UART.
 
 ## Tools
 
-The firmware is compiled by the [SDCC](sdcc.sourceforge.net). The MCU header is generated from the [open-source XML](https://github.com/gicking/STM8_headers/blob/master/XML/STM8S003F3.xml)
+The firmware is compiled by the [SDCC](https://sdcc.sourceforge.net). The MCU header is generated from the [open-source XML](https://github.com/gicking/STM8_headers/blob/master/XML/STM8S003F3.xml)
 
 ## IR reception
 
