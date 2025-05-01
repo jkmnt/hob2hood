@@ -118,13 +118,13 @@ The firmware is compiled by the [SDCC](sdcc.sourceforge.net). The MCU header is 
 
 ## IR reception
 
-There were a few things to consider. The NRZ bit stream is not framed by the byte boundaries. Receiving it
+There were a few things to consider. The NRZ bit stream is not framed by byte boundaries. Receiving it
 asynchronously requires a pretty good sender-receiver clocks sync. About 2% to stay in sync for 24 bits.
 
 So the better way is to sync on edges. It compromises the noise sensitivity: IR spikes will spoil the whole message. On the other way, these spikes are likely the interference from another IR sender or sunlight.
 In both cases, our message is jammed beyond the hope of recovery.
 
-The simplest algorithm is measuring time between edge transitions. The end of message
+The simplest algorithm is measuring time between edges. The end of message
 is detected by the line idle timeout. Assuming the longest run of ones or zeros is 6 bits, the
 clocks sync of ~8% is enough.
 
