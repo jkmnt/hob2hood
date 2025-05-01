@@ -1,0 +1,12 @@
+{
+  "configurations": [
+    {
+      "name": "sdcc",
+      "includePath": ["firmware"],
+      "defines": ["__interrupt(arg)="],
+      "cStandard": "c99",
+      "intelliSenseMode": "gcc-arm"
+    }
+  ],
+  "version": 4
+}

@@ -1,0 +1,63 @@
+ninja_required_version = 1.3
+
+includes = -Ifirmware -Ifirmware/vendor
+builddir = .build
+
+stvp = c:/app/stm82/cli/STVP_CmdLine.exe
+
+cc = sdcc
+# warning 85 is the "argument unused"
+cflags = -mstm8 --std-c23 --opt-code-speed --disable-warning 85
+
+ld = sdcc
+ldflags = -mstm8 --out-fmt-ihx -Wl -I -Wl -C
+libs = -lstm8
+
+rule compile
+  command = $cc $cflags $includes $headers $defines -o $out -c $in
+  description = Compiling $in
+
+rule link
+  command = $ld $ldflags $libs -o $out $in
+
+rule size
+  command = size --target ihex $in
+
+rule burn
+  command = $stvp -ProgMode=SWIM -Device=STM8S003F3 -FileProg=$in -no_loop -no_log
+
+build $builddir/main.rel: compile firmware/main.c
+build $builddir/sys.rel: compile firmware/sys.c
+build $builddir/tty.rel: compile firmware/tty.c
+build $builddir/buttons.rel: compile firmware/buttons.c
+build $builddir/timer.rel: compile firmware/timer.c
+build $builddir/outs.rel: compile firmware/outs.c
+build $builddir/fan.rel: compile firmware/fan.c
+build $builddir/lamp.rel: compile firmware/lamp.c
+build $builddir/ir.rel: compile firmware/ir.c
+build $builddir/h2h.rel: compile firmware/h2h.c
+build $builddir/nvmem.rel: compile firmware/nvmem.c
+build $builddir/hood.rel: compile firmware/hood.c
+
+build $builddir/hood.hex: link $
+  $builddir/main.rel $
+  $builddir/sys.rel $
+  $builddir/tty.rel $
+  $builddir/buttons.rel $
+  $builddir/outs.rel $
+  $builddir/timer.rel $
+  $builddir/fan.rel $
+  $builddir/lamp.rel $
+  $builddir/ir.rel $
+  $builddir/h2h.rel $
+  $builddir/nvmem.rel $
+  $builddir/hood.rel
+
+
+build burn: burn $builddir/hood.hex
+
+build size: size $builddir/hood.hex
+
+build all: phony $builddir/hood.hex size
+
+default all

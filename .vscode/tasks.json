@@ -1,0 +1,31 @@
+{
+  // See https://go.microsoft.com/fwlink/?LinkId=733558
+  // for the documentation about the tasks.json format
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "build",
+      "type": "shell",
+      "command": "ninja",
+      "problemMatcher": {
+        "owner": "cpp",
+        "source": "sdcc",
+        "pattern": {
+          // The regular expression. Example to match: helloWorld.c:5:3: warning: implicit declaration of function ‘printf’ [-Wimplicit-function-declaration]
+          //   firmware/sys.c:30: syntax error 47: indirections to different types assignment
+          "regexp": "^(.*):(\\d+):\\s+(.*)$",
+          // The first match group matches the file name which is relative.
+          "file": 1,
+          // The second match group matches the line on which the problem occurred.
+          "line": 2,
+          // The fifth match group matches the message.
+          "message": 3
+        }
+      },
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      }
+    }
+  ]
+}

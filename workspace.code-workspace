@@ -1,0 +1,18 @@
+{
+	"folders": [
+		{
+			"path": "."
+		}
+	],
+	"settings": {
+		"files.associations": {
+			"stm8s003f3.h": "c",
+			"syntax.h": "c",
+			"sys.h": "c",
+			"tty.h": "c",
+			"timer.h": "c",
+			"ir.h": "c",
+			"h2h.h": "c"
+		}
+	}
+}
